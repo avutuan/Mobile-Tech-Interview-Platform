@@ -8,22 +8,16 @@
 import UIKit
 
 class SolutionViewController: UIViewController {
+    
+    @IBOutlet weak var solutionTextView: UITextView!
+    var solutionHTML: String?
+    
+    let noSolution: String = "No solution available."
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        solutionTextView.attributedText = solutionHTML?.htmlToPlainText.markdownToAttributedString ?? noSolution.markdownToAttributedString
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+

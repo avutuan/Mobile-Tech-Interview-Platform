@@ -10,7 +10,6 @@ import UIKit
 class QuestionListViewController: UIViewController, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
-    
     private var questions: [Question] = []
     private var dailyQuestion: Question =
     Question.empty
@@ -25,6 +24,16 @@ class QuestionListViewController: UIViewController, UITableViewDataSource {
         
         fetchQuestions()
     }
+    
+//    private func sortQuestions() {
+//        let finished = Set(Question.getQuestions())
+//        questions.sort {
+//            let aFinished = finished.contains($0)
+//            let bFinished = finished.contains($1)
+//            return !aFinished && bFinished // unfinished first
+//        }
+//    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -51,7 +60,7 @@ class QuestionListViewController: UIViewController, UITableViewDataSource {
         } else {
             question = questions[indexPath.row - 1]
             
-            cell.isDailyImageView.image = UIImage(systemName: "star")
+            cell.isDailyImageView.image = nil
             cell.acRateLabel.text = String(format: "%.1f%%", question.acRate * 100)
         }
         

@@ -12,13 +12,18 @@ class QuestionDetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var difficultyLabel: UILabel!
     @IBOutlet weak var contentTextView: UITextView!
-    @IBOutlet weak var hintsLabel: UILabel!
+    @IBOutlet weak var hintsTextView: UITextView!
     @IBOutlet weak var likesLabel: UILabel!
     @IBOutlet weak var dislikesLabel: UILabel!
+    @IBAction func showSolution(_ sender: Any) {
+        guard question.solution?.content.isEmpty == false else {
+            let alert = UIAlertController(title: "No Solution", message: "This problem doesn't have a public solution available.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
+            return
+        }
 
-    @IBAction func showSolutions(_ sender: Any) {
-        // TODO: Push to a solutions view controller
-        print("Solution button tapped")
+        performSegue(withIdentifier: "ShowSolution", sender: self)
     }
 
     var question: Question!
@@ -36,13 +41,19 @@ class QuestionDetailViewController: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowSolution" {
+            guard let destination = segue.destination as? SolutionViewController else { return }
+            destination.solutionHTML = question.solution?.content
+        }
+    }
+    
     private func fetchQuestion(for slug: String) {
-        let parameters = "{\"query\":\"query questionTitle($titleSlug: String!) {\\n  question(titleSlug: $titleSlug) {\\n    questionId\\n    content\\n    acRate\\n    title\\n    titleSlug\\n    difficulty\\n    likes\\n    dislikes\\n  }\\n}\",\"variables\":{\"titleSlug\":\"\(slug)\"}}"
+        let parameters = "{\"query\":\"query questionTitle($titleSlug: String!) {\\n  question(titleSlug: $titleSlug) {\\n    questionId\\n    content\\n    acRate\\n    hints\\n    title\\n    titleSlug\\n    difficulty\\n    solution {\\n        content\\n    }\\n    likes\\n    dislikes\\n  }\\n}\",\"variables\":{\"titleSlug\":\"\(slug)\"}}"
         let postData = parameters.data(using: .utf8)
 
         var request = URLRequest(url: URL(string: "https://leetcode.com/graphql")!,timeoutInterval: Double.infinity)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("csrftoken=qgmuc0zTmSjxTHZwIm0DBNtmtDL1Fmt875CdQDQTYHxly6MGl4xBfIvCTfReW7jA", forHTTPHeaderField: "Cookie")
 
         request.httpMethod = "POST"
         request.httpBody = postData
@@ -88,8 +99,19 @@ class QuestionDetailViewController: UIViewController {
         titleLabel.text = question.title
         difficultyLabel.text = question.difficulty
         contentTextView.text = question.content?.htmlToPlainText ?? "No content"
-        hintsLabel.text = question.hints?.first ?? "No hints :/"
-
+        
+        if question.hints?.count ?? 0 > 0 {
+            var hintsText: String = ""
+            for (idx, hint) in question.hints!.enumerated() {
+                hintsText = hintsText + "<p>Hint \(idx + 1): \(hint)<p>"
+            }
+            
+            hintsTextView.text = hintsText.htmlToPlainText
+        } else {
+            hintsTextView.text = "No hints :/"
+        }
+        
+        
         if let likes = question.likes {
             likesLabel.text = "Likes 👍✅: \(likes)"
         } else {

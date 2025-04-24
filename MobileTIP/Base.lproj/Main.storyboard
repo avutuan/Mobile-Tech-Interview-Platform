@@ -62,6 +62,10 @@
                                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="32"/>
                                                                     </state>
+                                                                    <connections>
+                                                                        <action selector="didTapFinishedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d5X-0Z-Ns7"/>
+                                                                        <action selector="didTapFinishedButton:" destination="NAf-Dv-3AL" eventType="touchUpInside" id="r5S-UP-OTf"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <constraints>
@@ -151,7 +155,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="w45-RD-FvY" secondAttribute="trailing" id="tle-x8-4eD"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="EX4-iG-LgF"/>
+                    <navigationItem key="navigationItem" title="Question Set" id="EX4-iG-LgF"/>
                     <connections>
                         <outlet property="tableView" destination="w45-RD-FvY" id="tAd-kn-BqR"/>
                     </connections>
@@ -208,7 +212,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3h-Gc-yhz">
-                                        <rect key="frame" x="0.0" y="57" width="385" height="535"/>
+                                        <rect key="frame" x="0.0" y="57" width="385" height="431"/>
                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                                         <string key="text">You are given an array nums consisting of positive integers.
 
@@ -241,16 +245,16 @@ Constraints:
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hints" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Omb-C8-el6">
-                                        <rect key="frame" x="0.0" y="592" width="385" height="24"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Hints" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ra0-rD-Rz3">
+                                        <rect key="frame" x="0.0" y="488" width="385" height="128"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="24" id="nhx-SI-zPe"/>
+                                            <constraint firstAttribute="height" constant="128" id="tlt-WY-Fr9"/>
                                         </constraints>
+                                        <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lfn-Uu-EyQ">
                                         <rect key="frame" x="0.0" y="616" width="385" height="24"/>
                                         <subviews>
@@ -287,7 +291,8 @@ Constraints:
                                             <color key="titleColor" systemColor="labelColor"/>
                                         </state>
                                         <connections>
-                                            <action selector="solutionsButton:" destination="q4U-oS-Myi" eventType="touchUpInside" id="3LR-ZH-naJ"/>
+                                            <action selector="showSolution:" destination="q4U-oS-Myi" eventType="touchUpInside" id="uNU-yc-n5R"/>
+                                            <segue destination="JMh-Ce-mp7" kind="show" identifier="ShowSolution" id="3Ss-gE-aqS"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -302,12 +307,12 @@ Constraints:
                             <constraint firstItem="VZf-bO-7we" firstAttribute="bottom" secondItem="SK9-2S-6yM" secondAttribute="bottom" id="zhz-Hi-SDV"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="xYV-nB-zdM"/>
+                    <navigationItem key="navigationItem" title="Question" id="xYV-nB-zdM"/>
                     <connections>
                         <outlet property="contentTextView" destination="d3h-Gc-yhz" id="Car-uk-Rhw"/>
                         <outlet property="difficultyLabel" destination="MPl-Am-5ZU" id="UGF-AM-nwM"/>
                         <outlet property="dislikesLabel" destination="01X-5q-gbP" id="Sl2-pU-sgb"/>
-                        <outlet property="hintsLabel" destination="Omb-C8-el6" id="6iS-ER-Bt4"/>
+                        <outlet property="hintsTextView" destination="ra0-rD-Rz3" id="Z1h-bw-wRM"/>
                         <outlet property="likesLabel" destination="ila-KP-pcF" id="FuT-uP-spj"/>
                         <outlet property="titleLabel" destination="2fb-MU-OfZ" id="QJX-if-0wP"/>
                     </connections>
@@ -315,6 +320,47 @@ Constraints:
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N4y-Bi-8j8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1877" y="763"/>
+        </scene>
+        <!--Solution-->
+        <scene sceneID="Vhb-Cc-Uef">
+            <objects>
+                <viewController id="JMh-Ce-mp7" customClass="SolutionViewController" customModule="MobileTIP" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Gao-Ar-4zK">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" allowsEditingTextAttributes="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5XK-bI-Nor">
+                                <rect key="frame" x="4" y="103" width="385" height="666"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <attributes>
+                                            <color key="NSColor" systemColor="labelColor"/>
+                                            <font key="NSFont" size="16" name="Avenir-Book"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vNa-Sk-hCt"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="5XK-bI-Nor" firstAttribute="top" secondItem="vNa-Sk-hCt" secondAttribute="top" id="7mv-Zf-9DQ"/>
+                            <constraint firstItem="vNa-Sk-hCt" firstAttribute="bottom" secondItem="5XK-bI-Nor" secondAttribute="bottom" id="AWa-ZR-VSU"/>
+                            <constraint firstItem="5XK-bI-Nor" firstAttribute="leading" secondItem="vNa-Sk-hCt" secondAttribute="leading" constant="4" id="Cr7-2U-HaN"/>
+                            <constraint firstItem="vNa-Sk-hCt" firstAttribute="trailing" secondItem="5XK-bI-Nor" secondAttribute="trailing" constant="4" id="L2n-4b-GlU"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Solution" id="NpW-Dm-8uv"/>
+                    <connections>
+                        <outlet property="solutionTextView" destination="5XK-bI-Nor" id="JYC-Xg-83Q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cm8-v4-t1M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3111" y="763"/>
         </scene>
         <!--Finished Questions-->
         <scene sceneID="CCS-Nd-YNu">
@@ -461,7 +507,7 @@ Constraints:
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="bd4-g5-7Ip"/>
+        <segue reference="cD0-lv-k3b"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="checkmark" catalog="system" width="128" height="114"/>

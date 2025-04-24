@@ -20,4 +20,18 @@ extension String {
         
         return attributedString?.string ?? self
     }
+    
+    var markdownToAttributedString: NSAttributedString {
+        if #available(iOS 15.0, *) {
+            do {
+                let attributed = try AttributedString(markdown: self)
+                return NSAttributedString(attributedString: NSAttributedString(attributed))
+            } catch {
+                print("⚠️ Failed to convert markdown: \(error)")
+                return NSAttributedString(string: self)
+            }
+        } else {
+            return NSAttributedString(string: self)
+        }
+    }
 }
