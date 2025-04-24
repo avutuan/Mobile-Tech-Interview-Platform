@@ -182,7 +182,7 @@
         <!--Question Detail-->
         <scene sceneID="U7q-ib-nns">
             <objects>
-                <viewController title="Question Detail" id="q4U-oS-Myi" customClass="QuestionDetailViewController" customModule="MobileTIP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QuestionDetailViewController" title="Question Detail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="q4U-oS-Myi" customClass="QuestionDetailViewController" customModule="MobileTIP" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="X6a-U4-2jO">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -210,7 +210,7 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3h-Gc-yhz">
                                         <rect key="frame" x="0.0" y="57" width="385" height="535"/>
                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
-                                        <mutableString key="text">You are given an array nums consisting of positive integers.
+                                        <string key="text">You are given an array nums consisting of positive integers.
 
 We call a subarray of an array complete if the following condition is satisfied:
 
@@ -236,7 +236,7 @@ Constraints:
 
 - 1 &lt;= nums.length &lt;= 1000
 - 1 &lt;= nums[i] &lt;= 2000
-</mutableString>
+</string>
                                         <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

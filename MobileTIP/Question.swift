@@ -15,14 +15,29 @@ struct DailyChallengeWrapper: Codable {
     let activeDailyCodingChallengeQuestion: DailyQuestion
 }
 
-// MARK: - Daily Question Structure
-struct DailyQuestion: Codable {
-    let date: String
+struct QuestionData: Codable {
+    let data: QuestionWrapper
+}
+
+struct QuestionWrapper: Codable {
     let question: Question
 }
 
-struct QuestionList: Decodable {
-    let results: [Question]
+struct DailyQuestion: Codable {
+    let date: String?
+    let question: Question
+}
+
+struct QuestionListResponse: Codable {
+    let data: QuestionListData
+}
+
+struct QuestionListData: Codable {
+    let problemsetQuestionListV2: QuestionList
+}
+
+struct QuestionList: Codable {
+    let questions: [Question]
 }
 
 struct CodeSnippet: Codable, Equatable {
@@ -45,25 +60,44 @@ struct Solution: Codable, Equatable {
     }
 }
 
+struct TopicTag: Codable, Equatable {
+    let name: String
+    let slug: String
+}
+
 struct Question: Codable, Equatable {
-    let questionId: String
+    let questionId: String?
+    let id: Int?
     let title: String
-    let content: String
+    let titleSlug: String
+    let content: String?
     let difficulty: String
+    let paidOnly: Bool?
     let acRate: Double
-    let codeSnippets: [CodeSnippet]
+    let topicTags: [TopicTag]?
+    let status: String?
+    let frequency: Double?
+    let isInMyFavorites: Bool?
+    let codeSnippets: [CodeSnippet]?
     let solution: Solution?
-    let stats: String
+    let stats: String?
     let hints: [String]?
-    let likes: Int
-    let dislikes: Int
+    let likes: Int?
+    let dislikes: Int?
     
     enum CodingKeys: String, CodingKey {
         case questionId
+        case id
         case title
+        case titleSlug
         case content
         case difficulty
+        case paidOnly
         case acRate
+        case topicTags
+        case status
+        case frequency
+        case isInMyFavorites
         case codeSnippets
         case solution
         case stats
@@ -76,6 +110,29 @@ struct Question: Codable, Equatable {
 extension Question {
     static var finishedKey: String {
         return "Finished"
+    }
+    
+    static var empty: Question {
+        return Question(
+            questionId: "",
+            id: 0,
+            title: "",
+            titleSlug: "",
+            content: "",
+            difficulty: "",
+            paidOnly: false,
+            acRate: 0.0,
+            topicTags: [],
+            status: "",
+            frequency: 0.0,
+            isInMyFavorites: false,
+            codeSnippets: [],
+            solution: Solution(content: ""),
+            stats: "",
+            hints: [],
+            likes: 0,
+            dislikes: 0
+        )
     }
     
     static func save(_ questions: [Question]) {
