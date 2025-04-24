@@ -70,7 +70,6 @@ The problem is that people in the field of Computer Science or related fields wa
 
 ## Wireframes
 
-[Add picture of your hand sketched wireframes in this section]
 <img src="wireframes.png" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
