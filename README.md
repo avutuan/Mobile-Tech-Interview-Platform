@@ -47,10 +47,10 @@ The problem is that people in the field of Computer Science or related fields wa
 * User can view daily question that will be at the top denoted by a star
 * User can view other questions and scroll through the questions
 * User can select questions that they finished
-- [ ] Question Detail
+- [x] Question Detail
 * User can view details and hints about question
 * User can press button to send them to solution screen (if the question is the daily question)
-- [ ] Question Solution
+- [x] Question Solution
 * User can view the solution
 
 ### 3. Navigation
@@ -62,20 +62,16 @@ The problem is that people in the field of Computer Science or related fields wa
 
 **Flow Navigation** (Screen to Screen)
 
-- [ ] Questions Stream (when you press on a question)
+- [x] Questions Stream (when you press on a question)
 * => Question Detail
-- [ ] Finished Questions (when you press on a question)
+- [x] Finished Questions (when you press on a question)
 * => Question Detail
-- [ ] Question Detail (when you press on solution button)
+- [x] Question Detail (when you press on solution button)
 * => Question Solution
 
 ## Wireframes
 
 <img src="wireframes.png" width=600>
-
-### [BONUS] Digital Wireframes & Mockups
-
-### [BONUS] Interactive Prototype
 
 ## Schema 
 
