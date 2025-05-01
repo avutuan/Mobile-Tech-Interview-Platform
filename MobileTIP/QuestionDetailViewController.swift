@@ -15,15 +15,14 @@ class QuestionDetailViewController: UIViewController {
     @IBOutlet weak var hintsTextView: UITextView!
     @IBOutlet weak var likesLabel: UILabel!
     @IBOutlet weak var dislikesLabel: UILabel!
+    
     @IBAction func showSolution(_ sender: Any) {
-        guard question.solution?.content.isEmpty == false else {
+        guard question.solution?.content?.isEmpty == false else {
             let alert = UIAlertController(title: "No Solution", message: "This problem doesn't have a public solution available.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default))
             present(alert, animated: true)
             return
         }
-
-        performSegue(withIdentifier: "ShowSolution", sender: self)
     }
 
     var question: Question!

@@ -15,15 +15,25 @@ class QuestionCell: UITableViewCell {
     @IBOutlet weak var acRateLabel: UILabel!
     @IBOutlet weak var isDailyImageView: UIImageView!
     
+    var question: Question!
+    
+    @IBAction func selectedTapped(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        
+        if sender.isSelected {
+            question.addToFinished()
+        } else {
+            question.removeFromFinished()
+        }
+        
+        print(Question.getQuestions())
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+    override func setSelected(_ selected: Bool, animated: Bool) { }
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) { }
 }

@@ -22,16 +22,17 @@ extension String {
     }
     
     var markdownToAttributedString: NSAttributedString {
+        var attributedString: NSAttributedString = NSAttributedString(string: self)
+        
         if #available(iOS 15.0, *) {
             do {
                 let attributed = try AttributedString(markdown: self)
-                return NSAttributedString(attributedString: NSAttributedString(attributed))
+                attributedString = NSAttributedString(attributedString: NSAttributedString(attributed))
             } catch {
                 print("⚠️ Failed to convert markdown: \(error)")
-                return NSAttributedString(string: self)
             }
-        } else {
-            return NSAttributedString(string: self)
         }
+        
+        return attributedString
     }
 }

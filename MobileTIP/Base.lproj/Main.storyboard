@@ -63,8 +63,7 @@
                                                                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="32"/>
                                                                     </state>
                                                                     <connections>
-                                                                        <action selector="didTapFinishedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d5X-0Z-Ns7"/>
-                                                                        <action selector="didTapFinishedButton:" destination="NAf-Dv-3AL" eventType="touchUpInside" id="r5S-UP-OTf"/>
+                                                                        <action selector="selectedTapped:" destination="NAf-Dv-3AL" eventType="touchUpInside" id="NNr-eY-Lze"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -329,7 +328,7 @@ Constraints:
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" allowsEditingTextAttributes="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5XK-bI-Nor">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5XK-bI-Nor">
                                 <rect key="frame" x="4" y="103" width="385" height="666"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <attributedString key="attributedText">
@@ -481,6 +480,9 @@ Constraints:
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="WdF-wY-txV"/>
+                    <connections>
+                        <outlet property="tableView" destination="fUq-IM-pSW" id="Uga-k9-XXo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0rS-5m-CDp" sceneMemberID="firstResponder"/>
             </objects>
@@ -507,7 +509,7 @@ Constraints:
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="cD0-lv-k3b"/>
+        <segue reference="bd4-g5-7Ip"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="checkmark" catalog="system" width="128" height="114"/>

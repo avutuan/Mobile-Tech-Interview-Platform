@@ -17,6 +17,8 @@ class QuestionListViewController: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        Question.clearFromFinished()
 
         tableView.dataSource = self
         
@@ -66,6 +68,8 @@ class QuestionListViewController: UIViewController, UITableViewDataSource {
         
         cell.titleLabel.text = question.title
         cell.difficultyLabel.text = question.difficulty.uppercased()
+        
+        cell.question = question
         
         return cell
     }

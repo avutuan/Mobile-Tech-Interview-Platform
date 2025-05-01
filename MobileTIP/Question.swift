@@ -53,7 +53,7 @@ struct CodeSnippet: Codable, Equatable {
 }
 
 struct Solution: Codable, Equatable {
-    let content: String
+    let content: String?
     
     enum CodingKeys: String, CodingKey {
         case content
@@ -84,7 +84,7 @@ struct Question: Codable, Equatable {
     let hints: [String]?
     let likes: Int?
     let dislikes: Int?
-    
+        
     enum CodingKeys: String, CodingKey {
         case questionId
         case id
@@ -169,6 +169,14 @@ extension Question {
         finishedQuestions.removeAll { question in
             return self == question
         }
+        
+        Question.save(finishedQuestions)
+    }
+    
+    static func clearFromFinished() {
+        var finishedQuestions = Question.getQuestions()
+        
+        finishedQuestions.removeAll()
         
         Question.save(finishedQuestions)
     }
